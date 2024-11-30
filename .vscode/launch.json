@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "AOC_SESSION": "53616c7465645f5f40b9e6bb63567556e7e3866256bb202f8e71ffbbd98717ea090faec403506eefd4a93679dd3cf3ae69216f060034c3bf36bf13f87f2613f8"
+            }
+        }
+    ]
+}
