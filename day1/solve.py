@@ -1,22 +1,17 @@
-from aocd import get_data, submit
-from tqdm import tqdm
+left = []
+right = []
+with open("day1/input.txt") as f:
+    for line in f.readlines():
+        left.append(int(line.split()[0]))
+        right.append(int(line.split()[1]))
 
-real = get_data(day = 1, year = 2024)
+left.sort()
+right.sort()
+dist = [abs(r - l) for (l, r) in zip(left, right)]
+similarity = [len(list(filter(lambda r: r == l, right))) * l for l in left]
 
-example = '''\
->
-'''
+p1 = sum(dist)
+p2 = sum(similarity)
 
-data = example
-
-def solve_p1(data):
-    for line in tqdm(data.splitlines()):
-        pass
-
-    return 0
-
-p1 = solve_p1(data)
-print(p1)      
-
-""" if data == real:
-    submit(p1, part = "a", day = 1, year = 2024) """
+print(f"Part 1 = {p1}") 
+print(f"Part 2 = {p2}")  
