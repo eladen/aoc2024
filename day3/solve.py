@@ -18,9 +18,13 @@ total_p1 = sum(multiplications_p1)
 while True:
     start = s.find("don't")
     end = s[start:].find("do()")
-    if start == -1 or end == -1:
+    if start == -1:
         break
-    s = s[:start] + s[start+end+4:]
+    if end == -1:
+        end = len(s)
+    else:
+        end = start + end + 4
+    s = s[:start] + s[end:]
 
 expressions_p2 = re.findall(regex, s)
 multiplications_p2 = [parse_nums(x) for x in expressions_p2]
