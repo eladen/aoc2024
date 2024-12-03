@@ -18,5 +18,5 @@ for report in grid:
     if any(is_report_safe(report[:i] + report[i+1:]) for i in range(len(report))):
         total_p2 += 1
 
-print(f"Day 2, Part 1 = {total_p1}") 
-print(f"Day 2, Part 2 = {total_p2}")  
+print(f"2024 Day 2, Part 1 = {total_p1}") 
+print(f"2024 Day 2, Part 2 = {total_p2}")  

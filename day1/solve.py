@@ -13,5 +13,5 @@ similarity = [len(list(filter(lambda r: r == l, right))) * l for l in left]
 p1 = sum(dist)
 p2 = sum(similarity)
 
-print(f"Part 1 = {p1}") 
-print(f"Part 2 = {p2}")  
+print(f"2024 Day 1, Part 1 = {p1}") 
+print(f"2024 Day 1, Part 2 = {p2}")  
