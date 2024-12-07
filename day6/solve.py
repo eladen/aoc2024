@@ -40,6 +40,7 @@ total_p1 = len(seen)
 
 # Part 2
 total_p2 = 0
+rocks = set()
 for rr, cc in seen:
 
     if (rr, cc) == guard_orig: continue
@@ -63,6 +64,7 @@ for rr, cc in seen:
 
             if (r, c, direction) in seen_p2:
                 total_p2 += 1
+                rocks.add((rr, cc))
                 break
             seen_p2.add((r, c, direction))
         if nm == "blocked":
