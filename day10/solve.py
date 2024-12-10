@@ -6,7 +6,6 @@ R = len(grid)
 C = len(grid[0])
 dirs = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
-
 # Part 1
 all_trails = defaultdict(int)
 
@@ -16,6 +15,7 @@ for r, row in enumerate(grid):
 
             q = deque()
             q.append((r, c))
+            seen = set()
 
             while q:
 
@@ -25,11 +25,9 @@ for r, row in enumerate(grid):
                     all_trails[(r, c)] += 1
                 
                 for dr, dc in dirs:
-                    if 0 <= rr + dr < R and 0 <= cc + dc <  C and grid[rr + dr][cc + dc] == grid[rr][cc] + 1 and ((rr + dr, cc + dc) not in q):
+                    if 0 <= rr + dr < R and 0 <= cc + dc <  C and grid[rr + dr][cc + dc] == grid[rr][cc] + 1 and ((rr + dr, cc + dc) not in seen):
+                        seen.add((rr + dr, cc + dc))
                         q.append((rr + dr, cc + dc))
-
-
-total_p1 = sum(all_trails.values())
 
 # Part 2
 all_ratings = defaultdict(int)
@@ -51,7 +49,7 @@ for r, row in enumerate(grid):
                 
                 for dr, dc in dirs:
                     new_trail = trail + [(rr + dr, cc + dc)]
-                    if 0 <= rr + dr < R and 0 <= cc + dc <  C and grid[rr + dr][cc + dc] == grid[rr][cc] + 1 and new_trail not in q:
+                    if 0 <= rr + dr < R and 0 <= cc + dc <  C and grid[rr + dr][cc + dc] == grid[rr][cc] + 1:
                         q.append(new_trail)
 
 
