@@ -1,7 +1,7 @@
 from collections import defaultdict
 from copy import copy
 
-with open("day11/example.txt") as f:
+with open("day11/input.txt") as f:
     rocks = [int(ch) for ch in f.read().split(" ")]
 
 # set up dict of rocks and their counts
