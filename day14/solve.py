@@ -15,9 +15,9 @@ class Robot:
         self.vy = vy
         self.q = self.set_quadrant()
 
-    def move(self):
-        self.px = (self.px + self.vx) % X_MAX
-        self.py = (self.py + self.vy) % Y_MAX
+    def move(self, secs=1):
+        self.px = (self.px + secs * self.vx) % X_MAX
+        self.py = (self.py + secs * self.vy) % Y_MAX
         self.q = self.set_quadrant()
 
     def set_quadrant(self):
@@ -42,24 +42,20 @@ with open("day14/input.txt") as f:
         robots.append(Robot(px, py, vx, vy))
 
 # Part 1
-for i in range(100):
-    for robot in robots:
-        robot.move()
-
 quadrants = defaultdict(int)
 for robot in robots:
+    robot.move(100)
     quadrants[robot.q] += 1
 
-max_count = 0
-last_i = 0
-
-
 # Part 2
+
 # look for high concentration of robots in a space (a line in this case)
 # if number of robots on any given line reached a new maximum, remember this max and the position in the loop; additionaly, print the robot map to check
 # There are cycles in iterations, e.g. between ~7k and ~17k, so no need to go above 18k
 # Start the loop at 100 because robots already moved 100 times in part 1
 
+max_count = 0
+last_i = 0
 for i in range(100, 18000):
 
     all_positions = set()
