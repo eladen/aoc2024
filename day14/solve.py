@@ -1,5 +1,6 @@
 from collections import defaultdict, deque
-from pprint import pprint
+from copy import deepcopy
+import math
 
 # X_MAX = 11
 # Y_MAX = 7
@@ -47,6 +48,8 @@ for robot in robots:
     robot.move(100)
     quadrants[robot.q] += 1
 
+bckp = deepcopy(robots)
+
 # Part 2
 
 # look for high concentration of robots in a space (a line in this case)
@@ -92,3 +95,33 @@ total_p2 = last_i + 1
 
 print(f"2024 Day 14, Part 1 = {total_p1}") 
 print(f"2024 Day 14, Part 2 = {total_p2}")  
+
+# # Part 2 - alternative
+
+# # look for iteration with minimum total (manhattan) distance between positions of robots
+# robots = bckp
+# min_total_dist = math.inf
+# last_i = 0
+# vars = []
+
+# for i in range(100, X_MAX * Y_MAX):
+
+#     all_positions = []
+#     count_per_line = defaultdict(set)
+
+#     for robot in robots:
+#         robot.move()
+#         all_positions.append((robot.px, robot.py))
+        
+#     distances = []
+#     for j, pos in enumerate(all_positions):
+#         for pos2 in all_positions[:j]:
+#             distances.append(abs(pos[0] - pos2[0]) + abs(pos[1] - pos2[1]))
+    
+#     total_dist = sum(distances)
+#     if total_dist < min_total_dist:
+#         min_total_dist = total_dist
+#         last_i = i
+
+# total_p2_alt = last_i + 1
+# print(f"2024 Day 14, Part 2 alternative = {total_p2_alt}")  
