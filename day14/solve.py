@@ -51,12 +51,12 @@ for robot in robots:
 
 # look for high concentration of robots in a space (a line in this case)
 # if number of robots on any given line reached a new maximum, remember this max and the position in the loop; additionaly, print the robot map to check
-# There are cycles in iterations, e.g. between ~7k and ~17k, so no need to go above 18k
+# There are cycles in iterations - x positions repeats every 101 steps and y position every 103; no need to go aboe 101 * 103 steps
 # Start the loop at 100 because robots already moved 100 times in part 1
 
 max_count = 0
 last_i = 0
-for i in range(100, 18000):
+for i in range(100, X_MAX * Y_MAX):
 
     all_positions = set()
     count_per_line = defaultdict(set)
