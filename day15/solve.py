@@ -79,10 +79,8 @@ def move_robot_p2(r, c, dr, dc):
     nr = r + dr
     nc = c + dc
     
-    # if moving robot itself, nothing really changes, we move only 1 square
+    # if moving ROBOT itself, nothing really changes, we move only 1 square
     if grid[r][c] == "@":
-        if grid[nr][nc] == "#":
-            return 
         
         if grid[nr][nc] == ".":
             grid[nr][nc] = grid[r][c]
@@ -96,14 +94,10 @@ def move_robot_p2(r, c, dr, dc):
         grid[r][c] = "."
         return 
         
-    # Otherise, we are moving a box - we need to move the extra side as well
+    # Otherise, we are moving a BOX - we need to move the extra side as well
 
     # extra column to move
     ec = 1 if grid[r][c] == "[" else -1
-
-    # base case - path blocked
-    if grid[nr][nc] == "#" or grid[nr][nc + ec] == "#":
-        return 
 
     # base case - path free, move the box
     if grid[nr][nc] == "." and grid[nr][nc + ec] == ".":
