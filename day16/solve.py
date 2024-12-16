@@ -40,27 +40,27 @@ def dijkstra(grid, start, end, dr, dc):
 
         # check forward, add path if distance is at most the current minumum:
         if (r + dr, c + dc, dr, dc) not in seen and grid[r + dr][c + dc] != '#' and dist + 1 <= best_distance[(r + dr, c + dc, dr, dc)]:
-            best_distance[(r + dr, c + dc, dr, dc)] = dist + 1
             # note to self - everything works fine without resetting prev[] when new min dist is reached but I don't get why
             if dist + 1 < best_distance[(r + dr, c + dc, dr, dc)]:
                 prev[(r + dr, c + dc, dr, dc)] = []
             prev[(r + dr, c + dc, dr, dc)].append((r, c, dr, dc))
+            best_distance[(r + dr, c + dc, dr, dc)] = dist + 1
             heappush(pq, (dist + 1, r + dr, c + dc, dr, dc) )
 
         # check left, add path if distance is at most the current minumum:
         if  (r, c, -dc, dr) not in seen and dist + 1000 <= best_distance[(r, c, -dc, dr)]:
-            best_distance[(r, c, -dc, dr)] = dist + 1000
             if dist + 1000 < best_distance[(r, c, -dc, dr)]:
                 prev[(r, c, -dc, dr)] = []
             prev[(r, c, -dc, dr)].append((r, c, dr, dc))
+            best_distance[(r, c, -dc, dr)] = dist + 1000
             heappush(pq, (dist + 1000, r, c, -dc, dr) )
 
         # check right, add path if distance is at most the current minumum:
-        if (r, c, dc, dr) not in seen and dist + 1000 <= best_distance[(r, c, dc, -dr)]:
-            best_distance[(r, c, dc, -dr)] = dist + 1000
+        if (r, c, dc, -dr) not in seen and dist + 1000 <= best_distance[(r, c, dc, -dr)]:
             if dist + 1000 < best_distance[(r, c, dc, -dr)]:
                 prev[(r, c, dc, -dr)] = []
             prev[(r, c, dc, -dr)].append((r, c, dr, dc))
+            best_distance[(r, c, dc, -dr)] = dist + 1000
             heappush(pq, (dist + 1000, r, c, dc, -dr) )
 
     return best_distance, prev
@@ -74,9 +74,12 @@ min_dist, r, c, dr, dc = sorted(distances_to_end)[0]
 # Part 2
 # go from end, visit any points along any of the shortest paths
 q = deque()
-q.append((r, c, dr, dc))
 seen = set()
-seen.add((r, c, dr, dc))
+
+for (dist, r, c, dr, dc) in distances_to_end:
+    if dist == min_dist:
+        q.append((r, c, dr, dc))
+        seen.add((r, c, dr, dc))
 
 while q:
     r, c, dr, dc = q.popleft()
