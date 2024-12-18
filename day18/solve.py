@@ -35,7 +35,7 @@ def find_path(i):
             if 0 <= r + dr < R and 0 <= c + dc < C and (r + dr, c + dc) not in seen and (r + dr, c + dc) not in blocked:
                 seen.add((r + dr, c + dc))
                 q.append((r + dr, c + dc, cost + 1))
-                
+
     return min_cost
 
 # Part 1
@@ -47,8 +47,12 @@ low, high = BYTES_P1, len(bytes)
 # binary search to find the first blocking byte
 while low <= high:
     mid = (low + high) // 2
+
     if find_path(mid) == float("inf"):
-        high = mid - 1
+        if find_path(mid - 1) < float("inf"):
+            break
+        else:
+            high = mid - 1
     else:
         low = mid + 1
 
