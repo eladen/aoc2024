@@ -29,7 +29,7 @@ for i in range(len(bytes)):
     #         print("#", end="") if (r, c) in blocked else print(".", end="")
     #     print()
 
-    q.append((START[0], START[1], 0))
+    q.append((*START, 0))
     seen.add(START)
 
     while q:
