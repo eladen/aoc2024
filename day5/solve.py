@@ -1,4 +1,5 @@
 from collections import Counter
+
 with open("day5/input.txt") as f:
     rules, updates = f.read().split("\n\n")
     rules = [list(map(int, r.split("|"))) for r in rules.splitlines()]

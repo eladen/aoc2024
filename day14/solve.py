@@ -1,6 +1,5 @@
-from collections import defaultdict, deque
+from collections import defaultdict
 from copy import deepcopy
-import math
 
 # X_MAX = 11
 # Y_MAX = 7
@@ -74,19 +73,19 @@ for i in range(100, X_MAX * Y_MAX):
             last_i = i
 
     # print robots if new max count has been reached for visual check
-    if max_count > 20 and last_i == i:   
+    # if max_count > 20 and last_i == i:   
 
-        print("\n\n\n")
-        print(i, max_count)
-        print()
+    #     print("\n\n\n")
+    #     print(i, max_count)
+    #     print()
 
-        for y in range(Y_MAX):
-            for x in range(X_MAX):
-                if (x, y) in all_positions:
-                    print("#", end="")
-                else:
-                    print(".", end="")
-            print()
+    #     for y in range(Y_MAX):
+    #         for x in range(X_MAX):
+    #             if (x, y) in all_positions:
+    #                 print("#", end="")
+    #             else:
+    #                 print(".", end="")
+    #         print()
     
 
 

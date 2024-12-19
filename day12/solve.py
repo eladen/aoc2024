@@ -1,5 +1,5 @@
 from collections import defaultdict, deque
-from pprint import pprint
+
 with open("day12/input.txt") as f:
     grid = [line.strip() for line in f.readlines()]
 

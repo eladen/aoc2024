@@ -1,5 +1,4 @@
 from collections import defaultdict, deque
-from pprint import pprint
 from heapq import heappop, heappush
 import math
 
@@ -94,10 +93,10 @@ while q:
 seen = {(r, c) for r, c, dr, dc in seen}
 
 # print best seats for fun
-for r in range(R):
-    for c in range(C):
-        print("O", end="") if (r, c) in seen else print(grid[r][c], end="")
-    print()
+# for r in range(R):
+#     for c in range(C):
+#         print("O", end="") if (r, c) in seen else print(grid[r][c], end="")
+#     print()
 
 total_p1 = min_dist
 total_p2 = len(seen)

@@ -1,5 +1,3 @@
-from tqdm import tqdm
-
 with open("day9/input.txt") as f:
     disk = list(map(int, f.read().strip()))
 
