@@ -24,6 +24,7 @@ for r in range(R):
             track.add((r, c))
 
 TRACK_LENGTH = len(track) - 1
+REQUIRED_SAVED = 100
 
 all_cheats_p1 = defaultdict(set)
 all_cheats_p2 = defaultdict(set)
@@ -49,7 +50,7 @@ while (r, c) != END:
 
 # find cheats between any pair of points on track
 for pos, cheat_start in enumerate(track_ordered):
-    for cheat_end in track_ordered[pos + 1:]:
+    for cheat_end in track_ordered[pos + 1 + REQUIRED_SAVED:]:
 
         cd = cheat_dist(*cheat_start, *cheat_end)
 
@@ -58,7 +59,7 @@ for pos, cheat_start in enumerate(track_ordered):
            
             total_dist = dist_from_start[cheat_start] + cd + dist_to_end[cheat_end]
             saved = TRACK_LENGTH - total_dist
-            if saved > 0:
+            if saved >= REQUIRED_SAVED:
                 # Part 2 - add all cheats up to length 20
                 all_cheats_p2[saved].add((*cheat_start, *cheat_end))
                 if cd == 2:
@@ -66,8 +67,8 @@ for pos, cheat_start in enumerate(track_ordered):
                     all_cheats_p1[saved].add((*cheat_start, *cheat_end))
 
 
-total_p1 = sum([len(cheats) for saved, cheats in all_cheats_p1.items() if saved >= 100])
-total_p2 = sum([len(cheats) for saved, cheats in all_cheats_p2.items() if saved >= 100])
+total_p1 = sum([len(cheats) for cheats in all_cheats_p1.values()])
+total_p2 = sum([len(cheats) for cheats in all_cheats_p2.values()])
 
 print(f"2024 Day 20, Part 1 = {total_p1}")  
 print(f"2024 Day 20, Part 2 = {total_p2}")  
